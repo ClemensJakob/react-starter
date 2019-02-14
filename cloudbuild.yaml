@@ -16,7 +16,7 @@ steps:
     env:
       - 'BUILD_ID=$BUILD_ID'
 
-  # Build snapshot images and push them to Cloud Registry
+  # Build snapshot images and push them to Google Cloud Registry
 
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Build deployable image (commit tag)'

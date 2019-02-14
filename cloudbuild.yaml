@@ -16,6 +16,10 @@ steps:
     env:
       - 'BUILD_ID=$BUILD_ID'
 
+  - name: 'gcr.io/cloud-builders/gsutil'
+    id: 'Publish Styleguide'
+    args: ['cp', '-r', 'styleguide', 'gs://styleguide-enit-systems']  
+
   # Build snapshot images and push them to Google Cloud Registry
 
   - name: 'gcr.io/cloud-builders/docker'
@@ -37,8 +41,3 @@ steps:
 images:
   - 'gcr.io/$PROJECT_ID/styleguide-enit-systems:$SHORT_SHA'
   - 'gcr.io/$PROJECT_ID/styleguide-enit-systems:latest'
-
-artifacts:
-  objects:
-    location: gs://styleguide-enit-systems
-    paths: [styleguide/index.html, styleguide/build/*.js]
